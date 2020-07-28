@@ -15,30 +15,9 @@ public class carRental {
 	
 	public carRental() {
 		
-		Introduction();
-		
-		System.out.println("What brings you in today? (Please choose a number between 1-3)");
-		System.out.println("1. Rent a car\n2. Get the details of a specific car\n3. Leave");
-		this.option = sc.nextLine();
-		
-		
-		if(option.equals("1")) {
-			personalInfo();
-			rentalCar();
-		}else if(option.equals("2")) {
-			System.out.println("Which car would you like to get the specs for?");
-			detailsCar = sc.nextLine();
-			detailsOfCar();
-			
-		}else {
-			Conclusion();
-		}
-		
-
-				
 	}
 	
-	public void personalInfo() {
+	public void personalInfo(String name) {
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -47,7 +26,7 @@ public class carRental {
 		this.name = scan.nextLine();
 		
 		System.out.println();
-		System.out.println("Nice to meet you " + name + "!");
+		System.out.println("Nice to meet you " + this.name + "!");
 		
 		
 		boolean correct = true;
@@ -100,10 +79,25 @@ public class carRental {
 		System.out.println();
 	}
 	
-	private void Introduction() {
+	public void Introduction() {
 
 		System.out.println("Hello my name is Jalen and welcome to my car shop! "
 				+ "We have a lot of cars for rental so please feel free to look around!");
+		
+		System.out.println("What brings you in today? (Please choose a number between 1-3)");
+		System.out.println("1. Rent a car\n2. Get the details of a specific car\n3. Leave");
+		this.option = sc.nextLine();
+		
+		
+		if(option.equals("1")) {
+			personalInfo(name);
+			rentalCar();
+		}else if(option.equals("2")) {
+			detailsOfCar();
+			
+		}else {
+			Conclusion();
+		}
 	}
 	
 	private void Conclusion() {
@@ -178,23 +172,47 @@ public class carRental {
 	
 	public void detailsOfCar() {
 		
-		if(detailsCar.equals("2015 Hyundai Sonata Sport")) {
+		if(option.equals("2")) {
+			System.out.println("Here are the list of our options:");
+			System.out.println("1. 2015 Hyundai Sonata Sport\n2. 2016 Volkswagen Jetta\n3. 2020 Lexus NX\n4. 2020 Ford F-150 \n5. Tesla Model S");
+			
+			System.out.println("Which vehicle would you like to get the specs for?");
+			detailsCar = sc.nextLine();
+		}
+			
+
+		
+		if(detailsCar.equals("2015 Hyundai Sonata Sport") || detailsCar.equals("1")) {
 			System.out.println("SEATING: 5 passengers"
 					+ "\nMILES PER GALLON: 18.5"
 					+ "\nHORSEPOWER: 245 Hp");
 			System.out.println();
 			System.out.println("The price to rent is $60 a day.");
-			System.out.println("Would you like to choose this car?");
-			String yesOrNo = sc.nextLine();
-				
-			if(yesOrNo.toLowerCase().equals("yes")) {
-				System.out.println("Nice!");
+			
+			if(option.equals("1")) {
+				System.out.println("Would you like to choose this car?");
+				String yesOrNo = sc.nextLine();
 					
+				if(yesOrNo.toLowerCase().equals("yes")) {
+					System.out.println("Nice!");
+					Conclusion();
+						
+				}else {
+					System.out.println("No? Well Okay!");
+					
+					if(option.equals("1")) {
+						rentalCar();
+					}else {
+						detailsOfCar();
+					}
+				
+				}
+			
 			}else {
-				System.out.println("No? Well Okay!");
-				rentalCar();
+				detailsOfCar();
 			}
-		}else if(detailsCar.equals("2016 Volkswagen Jetta")) {
+			
+		}else if(detailsCar.equals("2016 Volkswagen Jetta") || detailsCar.equals("2")) {
 			System.out.println("SEATING: 5 passengers"
 					+ "\nMILES PER GALON: 14.5"
 					+ "\nHORSEPOWER: 150 Hp");
@@ -203,13 +221,46 @@ public class carRental {
 			System.out.println("Would you like to choose this car?");
 			String yesOrNo = sc.nextLine();
 			
-			if(yesOrNo.toLowerCase().equals("yes")) {
-				System.out.println("Nice!");
+			if(option.equals("1")) {
+				System.out.println("Would you like to choose this car?");
+				 yesOrNo = sc.nextLine();
+					
+				if(yesOrNo.toLowerCase().equals("yes")) {
+					System.out.println("Nice!");
+					Conclusion();
+						
+				}else {
+					System.out.println("No? Well Okay!");
+					
+					if(option.equals("1")) {
+						rentalCar();
+					}else {
+						detailsOfCar();
+					}
+				
+				}
+			
 			}else {
-				System.out.println("No? Well Okay!");
-				rentalCar();
+				System.out.println("Would you like to look at the specs of another?");
+				yesOrNo = sc.nextLine();
+				
+				if(yesOrNo.toLowerCase().equals("yes")) {
+					System.out.println("Okay");
+					detailsOfCar();
+						
+				}else {
+					System.out.println("No? Well Okay!");
+					
+					if(option.equals("1")) {
+						rentalCar();
+					}else {
+						detailsOfCar();
+					}
+				
+				}
 			}
-		}else if(detailsCar.equals("2020 Lexus NX")) {
+			
+		}else if(detailsCar.equals("2020 Lexus NX") || detailsCar.equals("3")) {
 			System.out.println("SEATING: 5 passengers"
 					+ "\nMILES PER GALON: 15.9"
 					+ "\nHORSEPOWER: 235 hp");
@@ -220,11 +271,17 @@ public class carRental {
 			
 			if(yesOrNo.toLowerCase().equals("yes")) {
 				System.out.println("Nice!");
+				Conclusion();
 			}else {
 				System.out.println("No? Well Okay!");
-				rentalCar();
+				
+				if(option.equals("1")) {
+					rentalCar();
+				}else {
+					detailsOfCar();
+				}
 			}
-		}else if(detailsCar.equals("2020 Ford F-150")) {
+		}else if(detailsCar.equals("2020 Ford F-150") || detailsCar.equals("4")) {
 			System.out.println("SEATING: 6 passengers"
 					+ "\nMILES PER GALON: 19"
 					+ "\nHORSEPOWER: 450 hp");
@@ -235,12 +292,18 @@ public class carRental {
 			
 			if(yesOrNo.toLowerCase().equals("yes")) {
 				System.out.println("Nice!");
+				Conclusion();
 			}else {
 				System.out.println("No? Well Okay!");
-				rentalCar();
+				
+				if(option.equals("1")) {
+					rentalCar();
+				}else {
+					detailsOfCar();
+				}
 			}
 			
-		}else if(detailsCar.equals("Tesla Model S")) {
+		}else if(detailsCar.equals("Tesla Model S") || detailsCar.equals("5")) {
 			System.out.println("SEATING: 5 passengers"
 					+ "\nMILES PER GALON: 100"
 					+ "\nHORSEPOWER: 778 hp");
@@ -251,9 +314,15 @@ public class carRental {
 			
 			if(yesOrNo.toLowerCase().equals("yes")) {
 				System.out.println("Nice!");
+				Conclusion();
 			}else {
 				System.out.println("No? Well Okay!");
-				rentalCar();
+				
+				if(option.equals("1")) {
+					rentalCar();
+				}else {
+					detailsOfCar();
+				}
 			}
 		}
 	}
